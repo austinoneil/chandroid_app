@@ -6,11 +6,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.chan.weava.forechanapp.data.Board;
 import com.chan.weava.forechanapp.networkRetrieve.BoardCreator;
-import com.chan.weava.forechanapp.networkRetrieve.JsonRequest;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 
@@ -19,6 +20,7 @@ public class Main extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        ArrayList<Board> boards = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView helloWorld = (TextView)findViewById(R.id.helloWorld);
@@ -27,7 +29,9 @@ public class Main extends Activity {
 
         try
         {
-            new BoardCreator().parseJsonObject();
+            BoardCreator createBoards = new BoardCreator();
+            createBoards.parseJsonObjectToArray();
+            boards = createBoards.getBoards();
         } catch (ExecutionException e)
         {
             e.printStackTrace();
@@ -38,6 +42,15 @@ public class Main extends Activity {
         {
             e.printStackTrace();
         }
+
+        StringBuilder buildString = new StringBuilder();
+        for(int i = 0; i < boards.size(); i++)
+        {
+            buildString.append("title" + boards.get(i).getFullTitle() + "\n");
+            buildString.append("link" + boards.get(i).getLinkTitle() + "\n");
+        }
+
+        helloWorld.setText(buildString.toString());
     }
 
 

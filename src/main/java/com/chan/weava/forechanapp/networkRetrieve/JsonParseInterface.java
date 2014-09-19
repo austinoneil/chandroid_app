@@ -1,11 +1,8 @@
 package com.chan.weava.forechanapp.networkRetrieve;
 
+import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Reader;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -23,5 +20,5 @@ public interface JsonParseInterface
 {
     public void parseJsonObjectToArray() throws JSONException, InterruptedException, ExecutionException;
 
-    public void setAssociatedObjectData();
+    public void parseJsonArray(JSONArray jsonArray) throws JSONException;
 }

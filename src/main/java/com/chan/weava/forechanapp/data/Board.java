@@ -1,7 +1,5 @@
 package com.chan.weava.forechanapp.data;
 
-import java.util.ArrayList;
-
 /**
  * Board
  *
