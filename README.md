@@ -14,7 +14,7 @@ I will never close the source code of this application to the public.
 When I feel as though the application has its main features at a relatively stable point, I will release
 an Alpha version of the application on the Google Play Store.
 
-If you do not use the Google Play Store, and would like a direct .APK, e-mail me about it and I will send it to you
+If you do not use the Google Play Store, and would like a direct .apk, e-mail me about it and I will send it to you
 at my earliest convenience. (I may host the .apk somewhere when the app is Alpha ready)
 
 If you would like to contact me, send me an e-mail at: waaronl@okstate.edu
