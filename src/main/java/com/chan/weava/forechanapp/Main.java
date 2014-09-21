@@ -1,10 +1,12 @@
 package com.chan.weava.forechanapp;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.chan.weava.forechanapp.data.Board;
 import com.chan.weava.forechanapp.networkRetrieve.BoardCreator;
@@ -15,15 +17,16 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 
-public class Main extends Activity {
+public class Main extends Activity
+{
+    ArrayList<Board> boards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        ArrayList<Board> boards = new ArrayList<>();
+        boards = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView helloWorld = (TextView)findViewById(R.id.helloWorld);
 
         //new JsonRequest().execute("https://a.4cdn.org/boards.json");
 
@@ -50,7 +53,20 @@ public class Main extends Activity {
             buildString.append("link" + boards.get(i).getLinkTitle() + "\n");
         }
 
-        helloWorld.setText(buildString.toString());
+        Parcelable[] toPass = new Parcelable[boards.size()];
+        for(int i = 0; i < boards.size(); i++)
+        {
+            toPass[i] = boards.get(i);
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArray("boards", toPass);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        BoardsFragment boardsFragment = new BoardsFragment();
+        boardsFragment.setArguments(bundle);
+        fragmentTransaction.add(R.id.board_list_frag, boardsFragment);
+        fragmentTransaction.commit();
     }
 
 

@@ -1,5 +1,8 @@
 package com.chan.weava.forechanapp.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Board
  *
@@ -12,7 +15,7 @@ package com.chan.weava.forechanapp.data;
  * @version ForeChanApp v0.1A
  * @since 9/10/14
  */
-public class Board
+public class Board implements Parcelable
 {
     private String mLinkTitle;
     private String mFullTitle;
@@ -41,4 +44,16 @@ public class Board
     public boolean getIsWorkSafe() { return this.mIsWorkSafe; }
 
     public void setIsWorkSafe(boolean isWorkSafe) { this.mIsWorkSafe = isWorkSafe; }
+
+    @Override
+    public int describeContents()
+    {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags)
+    {
+
+    }
 }

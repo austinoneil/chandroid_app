@@ -1,6 +1,7 @@
 package com.chan.weava.forechanapp.networkRetrieve;
 
 import com.chan.weava.forechanapp.data.Board;
+import com.chan.weava.forechanapp.utils.JsonParseStrings;
 import com.chan.weava.forechanapp.utils.RequestURLStrings;
 
 import org.json.JSONArray;
@@ -28,10 +29,6 @@ import java.util.concurrent.ExecutionException;
 public class BoardCreator implements JsonParseInterface
 {
     private ArrayList<Board> boards = new ArrayList<>();
-    private final String JSON_ARRAY_PARSE_BOARDS = "boards";
-
-    private final String PARSE_FROM_ARRAY_TITLE = "title";
-    private final String PARSE_FROM_ARRAY_LINK = "board";
 
     @Override
     public void parseJsonObjectToArray() throws ExecutionException, InterruptedException, JSONException
@@ -39,7 +36,7 @@ public class BoardCreator implements JsonParseInterface
         JSONArray jsonArray = null;
         JsonRequest request = new JsonRequest(RequestURLStrings.BOARDS_REQUEST_URL);
         request.execute();
-        jsonArray = request.get().getJSONArray(JSON_ARRAY_PARSE_BOARDS);
+        jsonArray = request.get().getJSONArray(JsonParseStrings.JSON_ARRAY_PARSE_BOARDS);
 
         this.parseJsonArray(jsonArray);
 
@@ -59,9 +56,9 @@ public class BoardCreator implements JsonParseInterface
         {
             Board newBoard = new Board();
             JSONObject childJsonObject = jsonArray.getJSONObject(i);
-            linkTitle = childJsonObject.getString(PARSE_FROM_ARRAY_LINK);
+            linkTitle = childJsonObject.getString(JsonParseStrings.PARSE_FROM_ARRAY_LINK);
             newBoard.setLinkTitle(linkTitle);
-            fullTitle = childJsonObject.getString(PARSE_FROM_ARRAY_TITLE);
+            fullTitle = childJsonObject.getString(JsonParseStrings.PARSE_FROM_ARRAY_TITLE);
             newBoard.setFullTitle(fullTitle);
             boards.add(newBoard);
         }
