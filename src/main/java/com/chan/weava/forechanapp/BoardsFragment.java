@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.chan.weava.forechanapp.data.Board;
+import com.chan.weava.forechanapp.utils.BundleIdentityStrings;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class BoardsFragment extends Fragment
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.boards_fragment, container, false);
-        Parcelable[] boards = this.getArguments().getParcelableArray("boards");
+        Parcelable[] boards = this.getArguments().getParcelableArray(BundleIdentityStrings.BOARDS_IDENTIFIER);
         ArrayList<Board> boardList = new ArrayList<>();
         for(int i = 0; i < boards.length; i++)
         {

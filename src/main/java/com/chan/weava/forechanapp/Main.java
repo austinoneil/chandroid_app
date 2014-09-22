@@ -10,6 +10,9 @@ import android.view.MenuItem;
 
 import com.chan.weava.forechanapp.data.Board;
 import com.chan.weava.forechanapp.networkRetrieve.BoardCreator;
+import com.chan.weava.forechanapp.networkRetrieve.CatalogCreator;
+import com.chan.weava.forechanapp.utils.BundleIdentityStrings;
+import com.chan.weava.forechanapp.utils.DebugUtils;
 
 import org.json.JSONException;
 
@@ -35,6 +38,9 @@ public class Main extends Activity
             BoardCreator createBoards = new BoardCreator();
             createBoards.parseJsonObjectToArray();
             boards = createBoards.getBoards();
+
+            CatalogCreator createThreads = new CatalogCreator("mu", 1);
+            createThreads.parseJsonObjectToArray();
         } catch (ExecutionException e)
         {
             e.printStackTrace();
@@ -46,13 +52,22 @@ public class Main extends Activity
             e.printStackTrace();
         }
 
-        StringBuilder buildString = new StringBuilder();
-        for(int i = 0; i < boards.size(); i++)
+        if(DebugUtils.inDebug)
         {
-            buildString.append("title" + boards.get(i).getFullTitle() + "\n");
-            buildString.append("link" + boards.get(i).getLinkTitle() + "\n");
+            StringBuilder buildString = new StringBuilder();
+            for (int i = 0; i < boards.size(); i++)
+            {
+                buildString.append("title" + boards.get(i).getFullTitle() + "\n");
+                buildString.append("link" + boards.get(i).getLinkTitle() + "\n");
+            }
+            System.out.println(buildString.toString());
         }
 
+        this.bundleWithFragment();
+    }
+
+    public void bundleWithFragment()
+    {
         Parcelable[] toPass = new Parcelable[boards.size()];
         for(int i = 0; i < boards.size(); i++)
         {
@@ -60,7 +75,7 @@ public class Main extends Activity
         }
 
         Bundle bundle = new Bundle();
-        bundle.putParcelableArray("boards", toPass);
+        bundle.putParcelableArray(BundleIdentityStrings.BOARDS_IDENTIFIER, toPass);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         BoardsFragment boardsFragment = new BoardsFragment();

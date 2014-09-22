@@ -2,6 +2,8 @@ package com.chan.weava.forechanapp.networkRetrieve;
 
 import android.os.AsyncTask;
 
+import com.chan.weava.forechanapp.utils.DebugUtils;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,15 +57,25 @@ public class JsonRequest extends AsyncTask<Void, Void, JSONObject>
         while((line = reader.readLine()) != null)
         {
             stringBuilder.append(line);
-            System.out.println("hi :)");
+            if(DebugUtils.inDebug)
+            {
+                System.out.println("Reading in JSON lines");
+            }
         }
-        System.out.println("I have finished doing this stuff");
+        if(DebugUtils.inDebug)
+        {
+            System.out.println("I have finished doing this stuff");
+        }
         return stringBuilder.toString();
     }
 
     @Override
     protected JSONObject doInBackground(Void... params)
     {
+        if(DebugUtils.inDebug)
+        {
+            System.out.println("URL: " + this.url);
+        }
         JSONObject jsonObject = null;
         try
         {
@@ -79,7 +91,10 @@ public class JsonRequest extends AsyncTask<Void, Void, JSONObject>
     @Override
     protected void onPostExecute(JSONObject result)
     {
-        System.out.println(result.toString());
+        if(DebugUtils.inDebug)
+        {
+            System.out.println(result.toString());
+        }
         isDone = true;
     }
 }

@@ -12,13 +12,11 @@ package com.chan.weava.forechanapp.data;
  * @version ForeChanApp v0.1a
  * @since 9/10/14
  */
-public class Poster
+public abstract class Poster extends PostFile
 {
     private String mPosterName;
     private String mPosterId;
     private String mPosterTripcode;
-
-    public Poster() {}
 
     public String getPosterName() { return this.mPosterName; }
 

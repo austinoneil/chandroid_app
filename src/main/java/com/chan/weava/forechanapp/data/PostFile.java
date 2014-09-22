@@ -12,7 +12,7 @@ package com.chan.weava.forechanapp.data;
  * @version ForeChanApp v[Insert Version Number]
  * @since 9/10/14
  */
-public class PostFile
+public abstract class PostFile
 {
     private String mFilename;
     private String mFileExtension;
@@ -21,8 +21,6 @@ public class PostFile
     private int mImageWidth;
     private int mThumbWidth;
     private int mThumbHeight;
-
-    public PostFile() {}
 
     public String getFilename() { return this.mFilename; }
 

@@ -1,6 +1,7 @@
 package com.chan.weava.forechanapp.networkRetrieve;
 
 import com.chan.weava.forechanapp.data.Board;
+import com.chan.weava.forechanapp.utils.DebugUtils;
 import com.chan.weava.forechanapp.utils.JsonParseStrings;
 import com.chan.weava.forechanapp.utils.RequestURLStrings;
 
@@ -40,9 +41,12 @@ public class BoardCreator implements JsonParseInterface
 
         this.parseJsonArray(jsonArray);
 
-        for(int i = 0; i < jsonArray.length(); i++)
+        if(DebugUtils.inDebug)
         {
-            System.out.println("ARRAY index-" + i + " : " + jsonArray.get(i));
+            for (int i = 0; i < jsonArray.length(); i++)
+            {
+                System.out.println("ARRAY index-" + i + " : " + jsonArray.get(i));
+            }
         }
     }
 
@@ -51,6 +55,7 @@ public class BoardCreator implements JsonParseInterface
     {
         String linkTitle;
         String fullTitle;
+        boolean isWorksafe;
 
         for(int i = 0; i < jsonArray.length(); i++)
         {

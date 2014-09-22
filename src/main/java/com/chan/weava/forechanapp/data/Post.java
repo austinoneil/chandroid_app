@@ -17,18 +17,12 @@ import java.util.Date;
  * @version ForeChanApp v0.1a
  * @since 9/10/14
  */
-public abstract class Post
+public class Post extends Poster
 {
     private String mComment;
     private String mSubject;
     private int mPostNumber;
     private Date mDatePosted;
-
-    // Information on the poster
-    private Poster mPoster;
-
-    // Image or WebM related to post
-    private PostFile mPostFile;
 
     // Replies to the post
     private ArrayList<Integer> mReplies;
@@ -50,14 +44,6 @@ public abstract class Post
     public Date getDatePosted() { return this.mDatePosted; }
 
     public void setDatePosted(Date datePosted) { this.mDatePosted = datePosted; }
-
-    public Poster getPoster() { return this.mPoster; }
-
-    public void setPoster(Poster poster) { this.mPoster = poster; }
-
-    public PostFile getPostFile() { return this.mPostFile; }
-
-    public void setPostFile(PostFile postFile) { this.mPostFile = postFile; }
 
     public ArrayList<Integer> getReplies() { return this.mReplies; }
 

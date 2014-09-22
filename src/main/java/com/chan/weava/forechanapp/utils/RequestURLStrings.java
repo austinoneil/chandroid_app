@@ -18,4 +18,10 @@ package com.chan.weava.forechanapp.utils;
 public class RequestURLStrings
 {
     public static String BOARDS_REQUEST_URL = "https://a.4cdn.org/boards.json";
+
+    public static String THREADS_REQUEST_URL_BEGIN = "https://a.4cdn.org/";
+    public static String THREADS_REQUEST_URL_END = "/threads.json";
+
+    public static String CATALOG_REQUEST_URL_BEGIN = "https://a.4cdn.org/";
+    public static String CATALOG_REQUEST_URL_END = "/catalog.json";
 }
