@@ -1,7 +1,7 @@
 Chandroid [Working Title]
 ============
 
-Android application to interact with all of 4Chan.
+Android application to read and post on 4Chan.
 
 This application uses the 4Chan API to retrieve JSON information on the various elements of 4Chan.
 It will then display that data to the user.
